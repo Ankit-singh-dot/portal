@@ -6,6 +6,7 @@ import connectDB from "./config/database.js";
 import userRoute from "./routes/user.routes.js";
 import companyRoute from "./routes/company.routes.js";
 import jobRoutes from "./routes/job.routes.js";
+import applicationRoute from "./routes/application.routes.js";
 const app = express();
 
 app.use(express.json());
@@ -14,6 +15,7 @@ app.use(cookieParser());
 app.use("/api/users", userRoute);
 app.use("/api/company", companyRoute);
 app.use("/api/jobs", jobRoutes);
+app.use("/api/application", applicationRoute);
 app.get("/", (req, res) => {
   return res.status(200).json({
     message: "welcome to the API",

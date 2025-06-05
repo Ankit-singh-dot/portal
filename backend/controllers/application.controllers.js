@@ -1,9 +1,13 @@
-import Application from "../models/application.model";
-import Job from "../models/job.model";
+import Application from "../models/application.model.js";
+import Job from "../models/job.model.js";
 export const applyJob = async (req, res) => {
   try {
     const userId = req.user._id;
+    console.log(userId);
+
     const jobId = req.params.id;
+    console.log(jobId);
+
     if (!jobId) {
       return res.status(404).json({
         message: "invalid job id",
@@ -26,11 +30,13 @@ export const applyJob = async (req, res) => {
         success: false,
       });
     }
-    const application = new Application({
+    const application = await Application.create({
       job: jobId,
       applicant: userId,
     });
-    job.application.push(application._id);
+    console.log(application);
+
+    job.applications.push(application._id);
     await job.save();
     return res.status(200).json({
       message: "Application submitted ",
