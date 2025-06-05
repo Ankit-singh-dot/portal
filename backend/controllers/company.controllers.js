@@ -1,4 +1,4 @@
-import { Company } from "../models/company.model.js";
+import Company from "../models/company.model.js";
 
 export const registerCompany = async (req, res) => {
   try {
@@ -68,5 +68,7 @@ export const updateCompany = async (req, res) => {
       return res.status(404).json({ message: "Company not found" });
     }
     return res.status(200).json({ message: "company updated" });
-  } catch (error) {}
+  } catch (error) {
+    return res.status(404).json("Error:" + error.message);
+  }
 };
