@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
+
 const connectDB = async () => {
-  await mongoose.connect(
-    "mongodb+srv://ankitrajdihara123:hnZXXMbwpuYBXtaN@portal.nfxlmaz.mongodb.net/portal"
-  );
+  await mongoose.connect(process.env.MONGO_URL);
 };
 export default connectDB;
