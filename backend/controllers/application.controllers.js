@@ -70,15 +70,27 @@ export const getAppliedJobs = async (req, res) => {
 export const getApplicants = async (req, res) => {
   try {
     const jobId = req.params.id;
-    const job = await Job.findById(jobId)
-      .sort({ createdAt: -1 })
-      .populate("applicant");
-  } catch (error) {}
+    const job = await Job.findById(jobId).populate({
+      path: "applications",
+      options: { sort: { createdAt: -1 } },
+      populate: { path: "applicant", options: { sort: { createdAt: -1 } } },
+    });
+    return res.status(200).json({
+      job,
+      success: true,
+    });
+  } catch (error) {
+    return res.status(404).json("Error: " + error.message);
+  }
 };
 export const updatedStatus = async (req, res) => {
   try {
-    const { status } = req.params;
+    const { status } = req.body;
+    console.log(status);
+
     const applicationId = req.params.id;
+    console.log(applicationId);
+
     if (!status) {
       return res.status(400).json({
         message: "Invalid status",

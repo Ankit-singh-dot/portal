@@ -10,5 +10,5 @@ const routes = express.Router();
 routes.post("/apply/:id", userAuth, applyJob);
 routes.get("/get", userAuth, getAppliedJobs);
 routes.get("/:id/applicants", userAuth, getApplicants);
-routes.put("/status:id/update", userAuth, updatedStatus);
+routes.post("/status/:id/update", userAuth, updatedStatus);
 export default routes;
