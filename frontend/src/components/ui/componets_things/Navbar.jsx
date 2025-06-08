@@ -28,10 +28,16 @@ const Navbar = () => {
           {!user ? (
             <div className="flex ">
               <div className="mr-1">
-                <Button variant="outline">Login</Button>
+                <Link to={"/login"}>
+                  <Button variant="outline">Login</Button>
+                </Link>
               </div>
               <div className="ml-2">
-                <Button className="bg-amber-600" variant="outline">Register</Button>
+                <Link to={"/register"}>
+                  <Button className="bg-amber-600" variant="outline">
+                    Register
+                  </Button>
+                </Link>
               </div>
             </div>
           ) : (
